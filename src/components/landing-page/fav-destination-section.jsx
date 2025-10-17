@@ -1,8 +1,9 @@
 import React from 'react';
-import DestinationCard from './destination-section'; // Pastikan nama file ini benar
+import DestinationCard from './destination-section';
 import './fav-destination-section.css';
+import useScrollAnimation from '../../animations/hooks/useScrollAnimation';
 
-// 1. Impor setiap gambar dari folder assets
+// Impor setiap gambar dari folder assets
 import imgKresek from '../../assets/images/fav-dest-section-monumen-kresek.jpg';
 import imgMonas from '../../assets/images/fav-dest-section-tugu-monas.jpg';
 import imgTugu from '../../assets/images/fav-dest-section-tugu-jogja.jpg';
@@ -10,7 +11,6 @@ import imgJamGadang from '../../assets/images/fav-dest-section-jam-gadang.jpg';
 import imgBorobudur from '../../assets/images/fav-dest-section-candi-borobudur.jpg';
 import imgPrambanan from '../../assets/images/fav-dest-section-candi-prambanan.jpg';
 
-// 2. Gunakan variabel gambar yang sudah diimpor, bukan string
 const destinationsData = [
   { name: "Monumen Kresek", image: imgKresek },
   { name: "Monas", image: imgMonas },
@@ -21,18 +21,24 @@ const destinationsData = [
 ];
 
 function FavoriteDestinationsSection() {
+  // 2. Panggil hook untuk mendapatkan 'ref' yang akan kita pasang ke section
+  const sectionRef = useScrollAnimation();
+
   return (
-    <section className="fav-destinations-section">
+    // 3. Pasang 'ref' ke elemen <section> utama
+    <section ref={sectionRef} className="fav-destinations-section">
       <div className="section-container">
-        <h2 className="section-title">Destinasi Favorit</h2>
+        {/* Tambahkan class 'animate-on-scroll' pada judul */}
+        <h2 className="section-title animate-on-scroll">Destinasi Favorit</h2>
         <div className="destinations-grid">
           {destinationsData.map((destination, index) => (
-            <DestinationCard
-              key={index}
-              name={destination.name}
-              // 3. Kirim variabel gambar, bukan string path
-              imageSrc={destination.image} 
-            />
+            // 4. Bungkus kartu dengan div dan tambahkan class animasi
+            <div key={index} className={`animate-on-scroll stagger-${index + 1}`}>
+              <DestinationCard
+                name={destination.name}
+                imageSrc={destination.image}
+              />
+            </div>
           ))}
         </div>
       </div>
