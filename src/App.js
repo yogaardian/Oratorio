@@ -11,8 +11,12 @@ import RegisterPage from './pages/register';
 import Dashboard from './pages/dashboard';
 import ArPage from './pages/ar';
 import VrPage from './pages/vr';
+import ArGalleryPage from './pages/ArGalleryPage';
+import VrGalleryPage from './pages/VrGalleryPage';
 import History from './pages/history';
+import ProfilePage from './pages/ProfilePage';
 import Footer from './components/all-page/footer-page/footer';
+
 
 // IMPORT SEMUA HALAMAN & LAYOUT UNTUK ADMIN
 import AdminLayout from './components/admin/AdminLayout';
@@ -31,9 +35,12 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/ar" element={<ArPage />} />
-          <Route path="/vr" element={<VrPage />} />
+          <Route path="/ar" element={<ArGalleryPage />} />
+          <Route path="/vr" element={<VrGalleryPage />} />
+          <Route path="/ar/:destinationId" element={<ArPage />} />
+          <Route path="/vr/:destinationId" element={<VrPage />} />
           <Route path="/history" element={<History />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/footer" element={<Footer />} />
 
           {/* RUTE UNTUK ADMIN DASHBOARD */}
